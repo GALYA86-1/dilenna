@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 клас НУШ — Ділення натуральних чисел</title>
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --card-bg: #1e1e1e;
+            --yellow: #ffcc00;
+            --yellow-hover: #e6b800;
+            --text-light: #f5f5f5;
+            --success: #4caf50;
+            --error: #f44336;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: var(--yellow);
+            color: var(--bg-dark);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 20px rgba(255, 204, 0, 0.3);
+            border-bottom: 4px solid #fff;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        header p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .section-card {
+            background: var(--card-bg);
+            border: 2px solid #333;
+            border-left: 8px solid var(--yellow);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+        h2 {
+            color: var(--yellow);
+            border-bottom: 2px dashed #444;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+        }
+        h3 {
+            color: #fff;
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        /* Стилі для теорії та пояснень */
+        .theory-box {
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.12), rgba(255, 204, 0, 0.03));
+            border: 2px solid var(--yellow);
+            padding: 1.8rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.15);
+        }
+        .theory-box h3 {
+            color: var(--yellow);
+            font-size: 1.3rem;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+            padding-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .theory-box ul {
+            margin: 0.8rem 0 0 1.2rem;
+            padding: 0;
+        }
+        .theory-box li {
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+        .highlight-formula {
+            background: #111;
+            color: var(--yellow);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            border: 1px dashed var(--yellow);
+        }
+        
+        .task-box {
+            background: #181818;
+            border: 3px solid var(--yellow);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.8rem 0;
+            box-shadow: 0 8px 25px rgba(255, 204, 0, 0.2);
+        }
+        .task-title-line {
+            font-weight: 900;
+            font-size: 1.35rem;
+            color: var(--yellow);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            display: block;
+            letter-spacing: 0.8px;
+        }
+        .task-condition {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            display: block;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+            background: rgba(255, 204, 0, 0.12);
+            padding: 1rem;
+            border-left: 6px solid var(--yellow);
+            border-radius: 6px;
+        }
+        
+        .example-row {
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .example-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffeb3b;
+        }
+        .example-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .ans-input {
+            padding: 0.5rem;
+            border: 2px solid #555;
+            background: #111;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 120px;
+            text-align: center;
+        }
+        .ans-input:focus { border-color: var(--yellow); outline: none; }
+        .ans-btn {
+            background: var(--yellow);
+            color: #121212;
+            font-weight: 700;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .ans-btn:hover { background: var(--yellow-hover); }
+        .ans-feedback {
+            font-weight: 700;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+
+        .toggle-notebook-btn {
+            background: #333;
+            color: var(--yellow);
+            border: 2px solid var(--yellow);
+            font-weight: 700;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            margin-top: 1rem;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+        .toggle-notebook-btn:hover { background: var(--yellow); color: #121212; }
+
+        .toggle-row-btn {
+            background: #333;
+            color: var(--yellow);
+            border: 1px solid var(--yellow);
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        .toggle-row-btn:hover { background: var(--yellow); color: #121212; }
+        
+        .notebook-wrapper {
+            display: none;
+            margin-top: 1rem;
+            width: 100%;
+        }
+        .grid-notebook {
+            width: 100%;
+            height: 300px;
+            background-image: 
+                linear-gradient(to right, rgba(30, 144, 255, 0.3) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 144, 255, 0.3) 1px, transparent 1px);
+            background-size: 26px 26px;
+            background-color: #141414;
+            border: 2px solid var(--yellow);
+            border-radius: 6px;
+            color: #ffcc00;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3rem;
+            padding: 15px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .grid-notebook:focus { outline: none; box-shadow: 0 0 12px rgba(255, 204, 0, 0.5); }
+
+        .akt-card {
+            background: #222;
+            border: 2px solid #444;
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .akt-question { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; color: #fff; }
+        .akt-btns { display: flex; gap: 1rem; }
+        .akt-btn {
+            background: #333; color: #fff; border: 2px solid #555;
+            padding: 0.6rem 1.5rem; font-size: 1rem; font-weight: 700; border-radius: 6px; cursor: pointer; transition: all 0.2s;
+        }
+        .akt-btn:hover { border-color: var(--yellow); }
+        .akt-btn.selected-true { background: rgba(76, 175, 80, 0.4); border-color: var(--success); }
+        .akt-btn.selected-false { background: rgba(244, 67, 54, 0.4); border-color: var(--error); }
+        .akt-feedback { margin-top: 0.75rem; font-weight: 700; font-size: 1.1rem; }
+        #akt-result-box {
+            display: none; background: rgba(255, 204, 0, 0.15);
+            border: 2px solid var(--yellow); padding: 1.5rem; border-radius: 10px; text-align: center; margin-top: 1.5rem;
+        }
+        #akt-result-box h3 { color: var(--yellow); margin-top: 0; font-size: 1.5rem; }
+
+        .video-btn-container { text-align: center; margin: 1.5rem 0; }
+        .video-link-btn {
+            display: inline-block; background: var(--yellow); color: #121212;
+            font-weight: 900; font-size: 1.2rem; text-decoration: none; padding: 1rem 2rem;
+            border-radius: 8px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
+            transition: all 0.2s ease;
+        }
+        .video-link-btn:hover { background: var(--yellow-hover); transform: translateY(-2px); }
+
+        .reflection-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 1rem;
+        }
+        .reflection-card {
+            background: #252525; border: 2px solid #444; border-radius: 8px;
+            padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s;
+        }
+        .reflection-card:hover { border-color: var(--yellow); background: rgba(255, 204, 0, 0.1); }
+        #reflection-comment {
+            margin-top: 1.5rem; padding: 1rem; background: rgba(255, 204, 0, 0.1);
+            border-left: 5px solid var(--yellow); border-radius: 6px; font-size: 1.1rem; font-weight: 600; display: none;
+        }
+
+        .quiz-container {
+            background: var(--card-bg); border: 2px solid var(--yellow); border-radius: 12px; padding: 2rem; box-shadow: 0 8px 25px rgba(255, 204, 0, 0.1);
+        }
+        .progress-bar-container { background: #333; border-radius: 10px; height: 12px; width: 100%; margin-bottom: 1.5rem; overflow: hidden; }
+        .progress-bar { background: var(--yellow); height: 100%; width: 0%; transition: width 0.3s ease; }
+        .question-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: #fff; text-transform: uppercase; }
+        .options-list { list-style: none; padding: 0; margin: 0 0 1.5rem 0; }
+        .options-list li { margin-bottom: 0.75rem; }
+        .options-list label {
+            display: flex; align-items: center; padding: 1rem; border: 2px solid #444; border-radius: 8px;
+            cursor: pointer; transition: all 0.2s; background: #252525; color: #fff; font-size: 1.1rem;
+        }
+        .options-list label:hover { border-color: var(--yellow); background: rgba(255, 204, 0, 0.1); }
+        .options-list input { margin-right: 1rem; transform: scale(1.2); }
+        .text-answer-input {
+            width: 100%; padding: 1rem; border: 2px solid #444; background: #252525; color: #fff;
+            border-radius: 8px; font-size: 1.2rem; box-sizing: border-box; margin-bottom: 1.5rem;
+        }
+        .text-answer-input:focus { border-color: var(--yellow); outline: none; }
+        .btn-group { display: flex; justify-content: space-between; margin-top: 1.5rem; }
+        button.quiz-btn {
+            background: var(--yellow); color: var(--bg-dark); font-weight: 700; border: none;
+            padding: 0.8rem 1.8rem; font-size: 1.1rem; border-radius: 8px; cursor: pointer; text-transform: uppercase;
+        }
+        button.quiz-btn:hover { background: var(--yellow-hover); }
+        .results-box { text-align: center; }
+        .score-display { font-size: 3rem; font-weight: 900; color: var(--yellow); margin: 1rem 0; }
+        .review-item {
+            text-align: left; background: #252525; padding: 1.2rem; border-radius: 8px;
+            margin-bottom: 1rem; border-left: 5px solid #555; color: #fff;
+        }
+        .review-item.correct { border-left-color: var(--success); background: rgba(76, 175, 80, 0.1); }
+        .review-item.incorrect { border-left-color: var(--error); background: rgba(244, 67, 54, 0.1); }
+        
+        footer-author {
+            text-align: center;
+            display: block;
+            margin: 3rem 0 1rem;
+            font-size: 1rem;
+            color: #888;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>➗ ДІЛЕННЯ НАТУРАЛЬНИХ ЧИСЕЛ ➗</h1>
+    <p>Інтерактивний урок для 5 класу НУШ</p>
+</header>
+
+<div class="container">
+
+    <!-- БЛОК 0: Актуалізація -->
+    <div class="section-card">
+        <h2>🚀 0. АКТУАЛІЗАЦІЯ ЗНАНИХ ФАКТІВ (ПРАВДА ЧИ БРЕХНЯ?)</h2>
+        <p>Давайте повторимо базові поняття перед вивченням ділення! Дайте відповідь на 5 запитань:</p>
+        
+        <div class="akt-card" id="akt-card-1">
+            <div class="akt-question">1. Дію, за допомогою якої за добутком та одним з множників знаходять інший множник, називають діленням.</div>
+            <div class="akt-btns">
+                <button class="akt-btn" id="akt-1-true" onclick="answerAkt(1, true)">✅ Правда</button>
+                <button class="akt-btn" id="akt-1-false" onclick="answerAkt(1, false)">❌ Брехня</button>
+            </div>
+            <div class="akt-feedback" id="akt-fb-1"></div>
+        </div>
+
+        <div class="akt-card" id="akt-card-2">
+            <div class="akt-question">2. На нуль ділити можна.</div>
+            <div class="akt-btns">
+                <button class="akt-btn" id="akt-2-true" onclick="answerAkt(2, false)">✅ Правда</button>
+                <button class="akt-btn" id="akt-2-false" onclick="answerAkt(2, true)">❌ Брехня</button>
+            </div>
+            <div class="akt-feedback" id="akt-fb-2"></div>
+        </div>
+
+        <div class="akt-card" id="akt-card-3">
+            <div class="akt-question">3. При діленні будь-якого числа (не рівного нулю) на самого себе отримуємо одиницю.</div>
+            <div class="akt-btns">
+                <button class="akt-btn" id="akt-3-true" onclick="answerAkt(3, true)">✅ Правда</button>
+                <button class="akt-btn" id="akt-3-false" onclick="answerAkt(3, false)">❌ Брехня</button>
+            </div>
+            <div class="akt-feedback" id="akt-fb-3"></div>
+        </div>
+
+        <div class="akt-card" id="akt-card-4">
+            <div class="akt-question">4. Щоб знайти невідоме ділене, треба частку помножити на дільник.</div>
+            <div class="akt-btns">
+                <button class="akt-btn" id="akt-4-true" onclick="answerAkt(4, true)">✅ Правда</button>
+                <button class="akt-btn" id="akt-4-false" onclick="answerAkt(4, false)">❌ Брехня</button>
+            </div>
+            <div class="akt-feedback" id="akt-fb-4"></div>
+        </div>
+
+        <div class="akt-card" id="akt-card-5">
+            <div class="akt-question">5. При діленні числа на одиницю число не змінюється.</div>
+            <div class="akt-btns">
+                <button class="akt-btn" id="akt-5-true" onclick="answerAkt(5, true)">✅ Правда</button>
+                <button class="akt-btn" id="akt-5-false" onclick="answerAkt(5, false)">❌ Брехня</button>
+            </div>
+            <div class="akt-feedback" id="akt-fb-5"></div>
+        </div>
+
+        <div id="akt-result-box">
+            <h3 id="akt-result-text"></h3>
+        </div>
+    </div>
+
+    <!-- БЛОК 1: Вивчення нового матеріалу -->
+    <div class="section-card">
+        <h2>🔥 1. ВИВЧЕННЯ НОВОГО МАТЕРІАЛУ ТА ПРАКТИКА</h2>
+        
+        <div class="theory-box">
+            <h3>📌 ГОЛОВНІ ПРАВИЛА ТА ПОНЯТТЯ ДІЛЕННЯ:</h3>
+            <ul>
+                <li><strong>Основна рівність:</strong> <span class="highlight-formula">a : b = c</span> (де <span class="highlight-formula">a</span> — ділене, <span class="highlight-formula">b</span> — дільник, <span class="highlight-formula">c</span> — частка).</li>
+                <li>⚠️ <strong>УВАГА! На нуль ділити категорично не можна!</strong> (<span class="highlight-formula">b ≠ 0</span>).</li>
+                <li>⭐ <strong>Властивості одиниці та нуля:</strong> 
+                    <br>• <span class="highlight-formula">a : a = 1</span> (при <span class="highlight-formula">a ≠ 0</span>)
+                    <br>• <span class="highlight-formula">a : 1 = a</span>
+                    <br>• <span class="highlight-formula">0 : a = 0</span> (при <span class="highlight-formula">a ≠ 0</span>)
+                </li>
+                <li>💡 <strong>Ділення на розрядну одиницю (10, 100, 1000 тощо):</strong> щоб поділити число на 10, 100 чи 1000, достатньо відкинути справа стільки нулів, скільки їх у розрядній одиниці.</li>
+            </ul>
+        </div>
+
+        <!-- ЗАВДАННЯ № 394 -->
+        <div class="task-box">
+            <span class="task-title-line">📝 ЗАВДАННЯ № 394</span>
+            <span class="task-condition">Виконайте ділення на розрядну одиницю</span>
+            
+            <div class="example-row"><span class="example-text">1) 470 : 10</span><div class="example-control"><input type="text" class="ans-input" id="394-1"><button class="ans-btn" type="button" onclick="checkSingle('394-1', '47', 'res-394-1')">Перевірити</button></div><div class="ans-feedback" id="res-394-1"></div></div>
+            <div class="example-row"><span class="example-text">2) 2900 : 100</span><div class="example-control"><input type="text" class="ans-input" id="394-2"><button class="ans-btn" type="button" onclick="checkSingle('394-2', '29', 'res-394-2')">Перевірити</button></div><div class="ans-feedback" id="res-394-2"></div></div>
+            <div class="example-row"><span class="example-text">3) 57250 : 10</span><div class="example-control"><input type="text" class="ans-input" id="394-3"><button class="ans-btn" type="button" onclick="checkSingle('394-3', '5725', 'res-394-3')">Перевірити</button></div><div class="ans-feedback" id="res-394-3"></div></div>
+            <div class="example-row"><span class="example-text">4) 5200 : 100</span><div class="example-control"><input type="text" class="ans-input" id="394-4"><button class="ans-btn" type="button" onclick="checkSingle('394-4', '52', 'res-394-4')">Перевірити</button></div><div class="ans-feedback" id="res-394-4"></div></div>
+            <div class="example-row"><span class="example-text">5) 37000 : 100</span><div class="example-control"><input type="text" class="ans-input" id="394-5"><button class="ans-btn" type="button" onclick="checkSingle('394-5', '370', 'res-394-5')">Перевірити</button></div><div class="ans-feedback" id="res-394-5"></div></div>
+            <div class="example-row"><span class="example-text">6) 238000 : 1000</span><div class="example-control"><input type="text" class="ans-input" id="394-6"><button class="ans-btn" type="button" onclick="checkSingle('394-6', '238', 'res-394-6')">Перевірити</button></div><div class="ans-feedback" id="res-394-6"></div></div>
+
+            <button class="toggle-notebook-btn" type="button" onclick="toggleNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+            <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Пишіть обчислення тут..."></textarea></div>
+        </div>
+
+        <!-- ЗАВДАННЯ № 392 (Без полів перевірки, лише клітинки для розв'язання) -->
+        <div class="task-box">
+            <span class="task-title-line">📝 ЗАВДАННЯ № 392</span>
+            <span class="task-condition">Перевір множенням, чи правильно виконано ділення</span>
+            
+            <div class="example-row" style="flex-direction: column; align-items: flex-start;">
+                <span class="example-text">1) 5499 : 13 = 423</span>
+                <div style="width: 100%; margin-top: 5px;">
+                    <button class="toggle-row-btn" type="button" onclick="toggleRowNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+                    <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Перевірка множенням..."></textarea></div>
+                </div>
+            </div>
+
+            <div class="example-row" style="flex-direction: column; align-items: flex-start;">
+                <span class="example-text">2) 6425 : 25 = 265</span>
+                <div style="width: 100%; margin-top: 5px;">
+                    <button class="toggle-row-btn" type="button" onclick="toggleRowNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+                    <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Перевірка множенням..."></textarea></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ЗАВДАННЯ № 396 -->
+        <div class="task-box">
+            <span class="task-title-line">📝 ЗАВДАННЯ № 396</span>
+            <span class="task-condition">Виконайте письмове ділення у стовпчик</span>
+            
+            <div class="example-row">
+                <span class="example-text">1) 2832 : 12</span>
+                <div class="example-control">
+                    <input type="text" class="ans-input" id="396-1">
+                    <button class="ans-btn" type="button" onclick="checkSingle('396-1', '236', 'res-396-1')">Перевірити</button>
+                </div>
+                <div style="width: 100%; margin-top: 5px;">
+                    <button class="toggle-row-btn" type="button" onclick="toggleRowNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+                    <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Ділення у стовпчик..."></textarea></div>
+                </div>
+                <div class="ans-feedback" id="res-396-1"></div>
+            </div>
+
+            <div class="example-row">
+                <span class="example-text">2) 7585 : 37</span>
+                <div class="example-control">
+                    <input type="text" class="ans-input" id="396-2">
+                    <button class="ans-btn" type="button" onclick="checkSingle('396-2', '205', 'res-396-2')">Перевірити</button>
+                </div>
+                <div style="width: 100%; margin-top: 5px;">
+                    <button class="toggle-row-btn" type="button" onclick="toggleRowNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+                    <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Ділення у стовпчик..."></textarea></div>
+                </div>
+                <div class="ans-feedback" id="res-396-2"></div>
+            </div>
+
+            <div class="example-row">
+                <span class="example-text">3) 113736 : 84</span>
+                <div class="example-control">
+                    <input type="text" class="ans-input" id="396-3">
+                    <button class="ans-btn" type="button" onclick="checkSingle('396-3', '1354', 'res-396-3')">Перевірити</button>
+                </div>
+                <div style="width: 100%; margin-top: 5px;">
+                    <button class="toggle-row-btn" type="button" onclick="toggleRowNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+                    <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Ділення у стовпчик..."></textarea></div>
+                </div>
+                <div class="ans-feedback" id="res-396-3"></div>
+            </div>
+
+            <div class="example-row">
+                <span class="example-text">4) 4625 : 125</span>
+                <div class="example-control">
+                    <input type="text" class="ans-input" id="396-4">
+                    <button class="ans-btn" type="button" onclick="checkSingle('396-4', '37', 'res-396-4')">Перевірити</button>
+                </div>
+                <div style="width: 100%; margin-top: 5px;">
+                    <button class="toggle-row-btn" type="button" onclick="toggleRowNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+                    <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Ділення у стовпчик..."></textarea></div>
+                </div>
+                <div class="ans-feedback" id="res-396-4"></div>
+            </div>
+
+            <div class="example-row">
+                <span class="example-text">5) 51968 : 256</span>
+                <div class="example-control">
+                    <input type="text" class="ans-input" id="396-5">
+                    <button class="ans-btn" type="button" onclick="checkSingle('396-5', '203', 'res-396-5')">Перевірити</button>
+                </div>
+                <div style="width: 100%; margin-top: 5px;">
+                    <button class="toggle-row-btn" type="button" onclick="toggleRowNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+                    <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Ділення у стовпчик..."></textarea></div>
+                </div>
+                <div class="ans-feedback" id="res-396-5"></div>
+            </div>
+
+            <div class="example-row">
+                <span class="example-text">6) 691122 : 687</span>
+                <div class="example-control">
+                    <input type="text" class="ans-input" id="396-6">
+                    <button class="ans-btn" type="button" onclick="checkSingle('396-6', '1006', 'res-396-6')">Перевірити</button>
+                </div>
+                <div style="width: 100%; margin-top: 5px;">
+                    <button class="toggle-row-btn" type="button" onclick="toggleRowNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+                    <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Ділення у стовпчик..."></textarea></div>
+                </div>
+                <div class="ans-feedback" id="res-396-6"></div>
+            </div>
+        </div>
+
+        <!-- ЗАВДАННЯ № 398 -->
+        <div class="task-box">
+            <span class="task-title-line">📝 ЗАВДАННЯ № 398</span>
+            <span class="task-condition">З 38 га зібрали 722 т картоплі. Яка врожайність картоплі (у т/га) на цьому полі?</span>
+            <div class="example-row">
+                <span class="example-text">Відповідь (т/га):</span>
+                <div class="example-control"><input type="text" class="ans-input" id="398-1"><button class="ans-btn" type="button" onclick="checkSingle('398-1', '19', 'res-398-1')">Перевірити</button></div>
+                <div class="ans-feedback" id="res-398-1"></div>
+            </div>
+
+            <button class="toggle-notebook-btn" type="button" onclick="toggleNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+            <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Запишіть розв'язання задачі тут..."></textarea></div>
+        </div>
+
+        <!-- ІНДИВІДУАЛЬНА РОБОТА -->
+        <div class="task-box">
+            <span class="task-title-line">🧠 ІНДИВІДУАЛЬНА РОБОТА</span>
+            <span class="task-condition">Господиня запланувала заготувати 20 кг полуниці. Ціна була 60 грн, але потім зменшилася на 1/5. Скільки грошей заощадила господиня?</span>
+            <div class="example-row">
+                <span class="example-text">Заощаджено (грн):</span>
+                <div class="example-control"><input type="text" class="ans-input" id="prob-1"><button class="ans-btn" type="button" onclick="checkSingle('prob-1', '240', 'res-prob-1')">Перевірити</button></div>
+                <div class="ans-feedback" id="res-prob-1"></div>
+            </div>
+
+            <button class="toggle-notebook-btn" type="button" onclick="toggleNotebook(this)">✍ Відкрити клітинки для обчислень</button>
+            <div class="notebook-wrapper"><textarea class="grid-notebook" placeholder="Зробіть свої записи та обчислення тут..."></textarea></div>
+        </div>
+    </div>
+
+    <!-- БЛОК 2: Відеоурок -->
+    <div class="section-card">
+        <h2>🎬 2. ВІДЕОУРОК</h2>
+        <p>Натисніть кнопку нижче, щоб переглянути навчальний відеоурок у новому вікні:</p>
+        <div class="video-btn-container">
+            <a href="https://www.youtube.com/watch?v=6EOG38ZKkxE" target="_blank" class="video-link-btn">▶ Дивитися відеоурок</a>
+        </div>
+    </div>
+
+    <!-- БЛОК 3: Тест -->
+    <div class="quiz-container">
+        <h2>⚡ 3. ПЕРЕВІРКА ЗНАНЬ (ТЕСТ НА 12 БАЛІВ)</h2>
+        <div class="progress-bar-container"><div class="progress-bar" id="progressBar"></div></div>
+        <div id="quizContent"></div>
+        <div class="btn-group" id="navButtons">
+            <button class="quiz-btn" type="button" id="prevBtn" onclick="prevQuestion()" style="display:none;">Назад</button>
+            <button class="quiz-btn" type="button" id="nextBtn" onclick="nextQuestion()">Далі</button>
+        </div>
+    </div>
+
+    <!-- БЛОК 4: Рефлексія -->
+    <div class="section-card" style="margin-top: 2rem;">
+        <h2>🎯 4. РЕФЛЕКСІЯ УРОКУ</h2>
+        <p>Оберіть емотикон, який найкраще описує ваш настрій та враження після заняття:</p>
+        <div class="reflection-grid">
+            <div class="reflection-card" onclick="setReflection('🤩', 'Фантастика! Ти сьогодні просто зірка математики, усе вдалося на найвищому рівні! 🚀')">
+                <span style="font-size: 2rem;">🤩</span><br><span>Найсів урок! (izi)</span>
+            </div>
+            <div class="reflection-card" onclick="setReflection('😎', 'Чудовий результат! Ти впевнено засвоїв нову тему, так тримати! 💪')">
+                <span style="font-size: 2rem;">😎</span><br><span>Все зрозумів!</span>
+            </div>
+            <div class="reflection-card" onclick="setReflection('🤔', 'Бувають складні моменти, і це нормально! Трохи практики — і все буде ідеально. 💡')">
+                <span style="font-size: 2rem;">🤔</span><br><span>Треба подумати</span>
+            </div>
+            <div class="reflection-card" onclick="setReflection('😴', 'Урок був не з легких, але ти молодець, що дослухав до кінця! Відпочинь і спробуй ще раз. ☕')">
+                <span style="font-size: 2rem;">😴</span><br><span>Було нудно / втомлено</span>
+            </div>
+        </div>
+        <div id="reflection-comment"></div>
+    </div>
+
+    <!-- Авторство -->
+    <footer-author>Автор: Галина Фолис</footer-author>
+
+</div>
+
+<script>
+    function toggleNotebook(btn) {
+        const wrapper = btn.nextElementSibling;
+        if (wrapper.style.display === "block") {
+            wrapper.style.display = "none";
+            btn.innerText = "✍ Відкрити клітинки для обчислень";
+        } else {
+            wrapper.style.display = "block";
+            btn.innerText = "🔼 Сховати клітинки";
+        }
+    }
+
+    function toggleRowNotebook(btn) {
+        const wrapper = btn.nextElementSibling;
+        if (wrapper.style.display === "block") {
+            wrapper.style.display = "none";
+            btn.innerText = "✍ Відкрити клітинки для обчислень";
+        } else {
+            wrapper.style.display = "block";
+            btn.innerText = "🔼 Сховати клітинки";
+        }
+    }
+
+    function checkSingle(inputId, correctVal, feedbackId) {
+        const val = document.getElementById(inputId).value.replace(/\s+/g, '').toLowerCase();
+        const target = correctVal.replace(/\s+/g, '').toLowerCase();
+        const fb = document.getElementById(feedbackId);
+        if (val === target) {
+            fb.innerText = "✅ Правильно!";
+            fb.style.color = "var(--success)";
+        } else {
+            fb.innerText = "❌ Невірно, спробуй ще!";
+            fb.style.color = "var(--error)";
+        }
+    }
+
+    function setReflection(emoji, text) {
+        const commentBox = document.getElementById('reflection-comment');
+        commentBox.style.display = "block";
+        commentBox.innerText = `${emoji} ${text}`;
+    }
+
+    const aktAnswers = {};
+    const correctAktKeys = { 1: true, 2: false, 3: true, 4: true, 5: true };
+
+    function answerAkt(qNum, userChoice) {
+        aktAnswers[qNum] = userChoice;
+        const trueBtn = document.getElementById(`akt-${qNum}-true`);
+        const falseBtn = document.getElementById(`akt-${qNum}-false`);
+        
+        if (userChoice === true) {
+            trueBtn.className = "akt-btn selected-true";
+            falseBtn.className = "akt-btn";
+        } else {
+            falseBtn.className = "akt-btn selected-false";
+            trueBtn.className = "akt-btn";
+        }
+
+        const isRight = (userChoice === correctAktKeys[qNum]);
+        const fb = document.getElementById(`akt-fb-${qNum}`);
+        if (isRight) {
+            fb.innerText = "✅ Правильно!";
+            fb.style.color = "var(--success)";
+        } else {
+            fb.innerText = "❌ Невірно, спробуй ще!";
+            fb.style.color = "var(--error)";
+        }
+
+        if (Object.keys(aktAnswers).length === 5) {
+            let correctTotal = 0;
+            for (let i = 1; i <= 5; i++) {
+                if (aktAnswers[i] === correctAktKeys[i]) correctTotal++;
+            }
+            const resBox = document.getElementById('akt-result-box');
+            const resText = document.getElementById('akt-result-text');
+            resBox.style.display = "block";
+            if (correctTotal >= 4) {
+                resText.innerText = `🎉 Ок, ти гарно все повторив (${correctTotal}/5)! Тож стартуємо до нової теми уроку! 🚀`;
+            } else {
+                resText.innerText = `💡 Ти відповів правильно на ${correctTotal}/5. Варто пригадати базові правила, але сміливо йдемо далі! 💪`;
+            }
+        }
+    }
+
+    const questions = [
+        {
+            id: 1, type: 'choice', weight: 0.5,
+            question: "Запитання №1: Що означає поділити одне натуральне число на інше?",
+            options: [{ text: "A) Знайти суму чисел", val: "A" }, { text: "Б) Знайти таке третє число, яке в добутку з другим дає перше", val: "Б" }, { text: "B) Знайти різницю чисел", val: "B" }],
+            correct: "Б", solution: "Правильна відповідь: Б) знайти таке третє число, яке в добутку з другим дає перше."
+        },
+        {
+            id: 2, type: 'choice', weight: 0.5,
+            question: "Запитання №2: Чи можна ділити на нуль?",
+            options: [{ text: "A) Можна, виходить нуль", val: "A" }, { text: "Б) Можна, виходить одиниця", val: "Б" }, { text: "B) На нуль ділити не можна!", val: "B" }],
+            correct: "B", solution: "Правильна відповідь: B) На нуль ділити не можна!"
+        },
+        {
+            id: 3, type: 'choice', weight: 0.5,
+            question: "Запитання №3: Як знайти невідоме ділене?",
+            options: [{ text: "A) Частку помножити на дільник", val: "A" }, { text: "Б) Ділене поділити на частку", val: "Б" }, { text: "B) Частку поділити на дільник", val: "B" }],
+            correct: "A", solution: "Правильна відповідь: A) Частку помножити на дільник."
+        },
+        {
+            id: 4, type: 'choice', weight: 0.5,
+            question: "Запитання №4: Як знайти невідомий дільник?",
+            options: [{ text: "A) Ділене помножити на частку", val: "A" }, { text: "Б) Ділене поділити на частку", val: "Б" }, { text: "B) Частку поділити на ділене", val: "B" }],
+            correct: "Б", solution: "Правильна відповідь: Б) Ділене поділити на частку."
+        },
+        {
+            id: 5, type: 'choice', weight: 0.5,
+            question: "Запитання №5: Чому дорівнює частка 0 : 15?",
+            options: [{ text: "A) 15", val: "A" }, { text: "Б) 1", val: "Б" }, { text: "B) 0", val: "B" }],
+            correct: "B", solution: "Правильна відповідь: B) 0."
+        },
+        {
+            id: 6, type: 'choice', weight: 1.0,
+            question: "Запитання №6: Обчисліть 470 : 10",
+            options: [{ text: "A) 47", val: "A" }, { text: "Б) 470", val: "Б" }, { text: "B) 4", val: "B" }],
+            correct: "A", solution: "Правильна відповідь: A) 47."
+        },
+        {
+            id: 7, type: 'text', weight: 1.0,
+            question: "Запитання №7: Обчисліть 5200 : 100 (Введіть лише число)",
+            correct: "52", solution: "Правильна відповідь: 52."
+        },
+        {
+            id: 8, type: 'choice', weight: 1.0,
+            question: "Запитання №8: Знайдіть значення виразу n : 8, якщо n = 0",
+            options: [{ text: "A) 8", val: "A" }, { text: "Б) 0", val: "Б" }, { text: "B) Ділити не можна", val: "B" }],
+            correct: "Б", solution: "Правильна відповідь: Б) 0."
+        },
+        {
+            id: 9, type: 'text', weight: 1.0,
+            question: "Запитання №9: Обчисліть 2832 : 12 =",
+            correct: "236", solution: "Правильна відповідь: 236."
+        },
+        {
+            id: 10, type: 'text', weight: 1.0,
+            question: "Запитання №10: Обчисліть 7585 : 37 =",
+            correct: "205", solution: "Правильна відповідь: 205."
+        },
+        {
+            id: 11, type: 'text', weight: 1.5,
+            question: "Запитання №11: Знайдіть значення виразу 4 · 12 + 18 : 6",
+            correct: "51", solution: "Правильна відповідь: 51."
+        },
+        {
+            id: 12, type: 'choice', weight: 1.0,
+            question: "Запитання №12: У скільки разів число 722 більше за 38?",
+            options: [{ text: "A) у 18 разів", val: "A" }, { text: "Б) у 19 разів", val: "Б" }, { text: "B) у 21 раз", val: "B" }],
+            correct: "Б", solution: "Правильна відповідь: Б) у 19 разів (722 : 38 = 19)."
+        },
+        {
+            id: 13, type: 'choice', weight: 1.0,
+            question: "Запитання №13: Знайдіть корінь рівняння x · 15 = 435",
+            options: [{ text: "A) 25", val: "A" }, { text: "Б) 29", val: "Б" }, { text: "B) 31", val: "B" }],
+            correct: "Б", solution: "Правильна відповідь: Б) 29 (435 : 15 = 29)."
+        },
+        {
+            id: 14, type: 'text', weight: 1.0,
+            question: "Запитання №14: Обчисліть 4625 : 125",
+            correct: "37", solution: "Правильна відповідь: 37."
+        }
+    ];
+
+    let currentQIndex = 0;
+    const quizUserAnswers = {};
+
+    function renderCurrentQuestion() {
+        const container = document.getElementById('quizContent');
+        const q = questions[currentQIndex];
+        let html = `<div class="question-title">${q.question}</div>`;
+
+        if (q.type === 'choice') {
+            html += `<ul class="options-list">`;
+            q.options.forEach(opt => {
+                const isChecked = (quizUserAnswers[currentQIndex] === opt.val) ? 'checked' : '';
+                html += `<li><label><input type="radio" name="quiz_opt" value="${opt.val}" ${isChecked} onclick="saveQuizChoice('${opt.val}')">${opt.text}</label></li>`;
+            });
+            html += `</ul>`;
+        } else if (q.type === 'text') {
+            const savedVal = quizUserAnswers[currentQIndex] !== undefined ? quizUserAnswers[currentQIndex] : '';
+            html += `<input type="text" class="text-answer-input" id="textAnsField" placeholder="Введіть число..." value="${savedVal}" oninput="saveQuizText(this.value)">`;
+        }
+
+        container.innerHTML = html;
+        updateProgress();
+        document.getElementById('prevBtn').style.display = currentQIndex > 0 ? 'block' : 'none';
+        document.getElementById('nextBtn').innerText = currentQIndex === questions.length - 1 ? 'Завершити тест' : 'Далі';
+    }
+
+    function saveQuizChoice(val) { quizUserAnswers[currentQIndex] = val; }
+    function saveQuizText(val) { quizUserAnswers[currentQIndex] = val.trim(); }
+
+    function nextQuestion() {
+        const txtField = document.getElementById('textAnsField');
+        if (txtField) { quizUserAnswers[currentQIndex] = txtField.value.trim(); }
+        if (currentQIndex < questions.length - 1) {
+            currentQIndex++;
+            renderCurrentQuestion();
+        } else {
+            showFinalResults();
+        }
+    }
+
+    function prevQuestion() {
+        const txtField = document.getElementById('textAnsField');
+        if (txtField) { quizUserAnswers[currentQIndex] = txtField.value.trim(); }
+        if (currentQIndex > 0) {
+            currentQIndex--;
+            renderCurrentQuestion();
+        }
+    }
+
+    function updateProgress() {
+        const progress = ((currentQIndex + 1) / questions.length) * 100;
+        document.getElementById('progressBar').style.width = `${progress}%`;
+    }
+
+    function showFinalResults() {
+        document.getElementById('navButtons').style.display = 'none';
+        document.getElementById('progressBar').parentElement.style.display = 'none';
+
+        let totalScore = 0;
+        let reviewHtml = `<div class="results-box"><h2>Результати тестування</h2><div class="score-display" id="finalScore"></div><h3 style="color:#ffcc00;">Детальний розбір завдань:</h3>`;
+
+        questions.forEach((q, index) => {
+            const userAns = quizUserAnswers[index] !== undefined && quizUserAnswers[index] !== "" ? quizUserAnswers[index] : "Без відповіді";
+            let isCorrect = false;
+            if (q.type === 'choice' && userAns === q.correct) isCorrect = true;
+            if (q.type === 'text' && userAns.replace(/\s+/g, '') === q.correct.replace(/\s+/g, '')) isCorrect = true;
+            if (isCorrect) totalScore += q.weight;
+
+            reviewHtml += `<div class="review-item ${isCorrect ? 'correct' : 'incorrect'}"><strong>${q.question}</strong><br>Ваша відповідь: <strong>${userAns}</strong><br>${isCorrect ? '✅ Правильно!' : '❌ Помилка.'}<br><small style="color:#ccc;">${q.solution}</small></div>`;
+        });
+
+        totalScore = Math.round(totalScore * 10) / 10;
+        document.getElementById('quizContent').innerHTML = reviewHtml + `</div>`;
+        document.getElementById('finalScore').innerText = `${totalScore} / 12 балів`;
+    }
+
+    window.onload = function() { renderCurrentQuestion(); };
+</script>
+
+</body>
+</html>
